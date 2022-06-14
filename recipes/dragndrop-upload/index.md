@@ -44,7 +44,7 @@ tags:
         </path>
       </svg>
     </div>
-    <p id="uploadFile_Status"></p>
+    <output name="respond" id="uploadFile_Status"></output>
   </div>
 </div>
 ```
@@ -143,10 +143,10 @@ function processingUploadFile(fileInstanceUpload) {
     xhr.onload = function (event){
       if (xhr.status == 200) {
         loaderImage.classList.remove('upload-loader_visible')
-        outputText.textContent = `Файл «${fileInstanceUpload.name}» загружен успешно`
+        outputText.value = `Файл «${fileInstanceUpload.name}» загружен успешно`
       } else {
         loaderImage.classList.remove('upload-loader_visible')
-        outputText.textContent = `Файл не загружен. Ошибка ${xhr.status} при загрузке файла.`
+        outputText.value = `Файл не загружен. Ошибка ${xhr.status} при загрузке файла.`
       }
     }
   }
@@ -168,7 +168,7 @@ function processingUploadFile(fileInstanceUpload) {
 Для обработки файла используется контейнер с идентификатором `dropFile_Zone`. Внутри этого блока помещаются вспомогательные элементы, которые обеспечивают информационное взаимодействие с пользователем:
 
 - анимированный [`svg-элемент`](/html/svg/) в качестве индикатора обработки файла;
-- текстовый элемент с идентификатором `uploadFile_Status`, который покажет информацию о результате загрузки.
+- элемент [`<output>`](/html/output/) с идентификатором `uploadFile_Status`, который покажет информацию о результате загрузки.
 
 Для каждого элемента, который участвует в процессе обработки файла, указывается атрибут [`id`](/html/global-attrs/#id) — это позволит JS-коду обращаться к нужным элементам для выполнения необходимых действий.
 
@@ -183,7 +183,7 @@ function processingUploadFile(fileInstanceUpload) {
         </path>
       </svg>
     </div>
-    <p id="uploadFile_Status"></p>
+    <output name="respond" id="uploadFile_Status"></output>
   </div>
 </div>
 ```
@@ -262,7 +262,7 @@ let fileInstance
 
 При отслеживании перетаскивания файла будут использоваться следующие события:
 
-- `dragover` выполняется во время перемещения файла над областью обработки файла;
+- `dragover` выполняется во время перемещения файла над областью его обработки;
 - `drop` выполняется в тот момент, когда пользователь отпустил кнопку мыши и выбранный файл был помещён («сброшен») в заданную область.
 
 Когда при перетаскивании выбранный файл будет находиться в пределах активной страницы, браузер его откроет. Чтобы файл был обработан в назначенной для этого области, необходимо отменить стандартное поведение браузера для событий `dragover` и `drop` путём вызова метода `preventDefault()`:
@@ -340,10 +340,10 @@ xhr.send(dropZoneData)
 xhr.onload = function (event){
   if (xhr.status == 200) {
     loaderImage.classList.remove('upload-loader_visible')
-    outputText.textContent = `Файл «${fileInstanceUpload.name}» загружен успешно`
+    outputText.value = `Файл «${fileInstanceUpload.name}» загружен успешно`
   } else {
     loaderImage.classList.remove('upload-loader_visible')
-    outputText.textContent = `Файл не загружен. Ошибка ${xhr.status} при загрузке файла.`
+    outputText.value = `Файл не загружен. Ошибка ${xhr.status} при загрузке файла.`
   }
 }
 ```

@@ -92,7 +92,7 @@
           </path>
         </svg>
       </div>
-      <p id="uploadFile_Status"></p>
+      <output name="respond" id="uploadFile_Status"></output>
     </div>
   </div>
 
@@ -143,10 +143,10 @@
         xhr.onload = function (event){
           if (xhr.status == 200) {
             loaderImage.classList.remove('upload-loader_visible')
-            outputText.textContent = `Файл «${fileInstanceUpload.name}» загружен успешно`
+            outputText.value = `Файл «${fileInstanceUpload.name}» загружен успешно`
           } else {
             loaderImage.classList.remove('upload-loader_visible')
-            outputText.textContent = `Файл не загружен. Ошибка ${xhr.status} при загрузке файла.`
+            outputText.value = `Файл не загружен. Ошибка ${xhr.status} при загрузке файла.`
           }
         }
       }
